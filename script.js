@@ -13,6 +13,21 @@ function openTab(evt, tabName) {
   evt.currentTarget.classList.add("active");
 }
 
+// Number Count Animation
+function animateValue(id, start, end, duration, prefix="", suffix="") {
+  const obj = document.getElementById(id);
+  let startTimestamp = null;
+  const step = (timestamp) => {
+    if (!startTimestamp) startTimestamp = timestamp;
+    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+    obj.innerHTML = prefix + (progress * (end - start) + start).toFixed(2) + suffix;
+    if (progress < 1) {
+      window.requestAnimationFrame(step);
+    }
+  };
+  window.requestAnimationFrame(step);
+}
+
 // Lot Size Calculator
 function calcLot() {
   let balance = parseFloat(document.getElementById("balance").value);
@@ -26,8 +41,8 @@ function calcLot() {
 
   let riskAmount = balance * (riskPercent / 100);
   let lotSize = (riskAmount / sl) / 10;
-  document.getElementById("lotResult").innerHTML =
-    `✅ Lot Size: <strong>${lotSize.toFixed(2)}</strong>`;
+  document.getElementById("lotResult").innerHTML = "✅ Lot Size: <strong id='lotVal'></strong>";
+  animateValue("lotVal", 0, lotSize, 1000, "", "");
 }
 
 // Risk/Reward Calculator
@@ -44,8 +59,8 @@ function calcRR() {
   let risk = Math.abs(entry - slPrice);
   let reward = Math.abs(tpPrice - entry);
   let rr = reward / risk;
-  document.getElementById("rrResult").innerHTML =
-    `🎯 Risk/Reward: <strong>${rr.toFixed(2)}R</strong>`;
+  document.getElementById("rrResult").innerHTML = "🎯 Risk/Reward: <strong id='rrVal'></strong>R";
+  animateValue("rrVal", 0, rr, 1000);
 }
 
 // Profit Calculator
@@ -59,8 +74,8 @@ function calcProfit() {
   }
 
   let profit = pips * lots * 10;
-  document.getElementById("profitResult").innerHTML =
-    `💰 Profit: <strong>$${profit.toFixed(2)}</strong>`;
+  document.getElementById("profitResult").innerHTML = "💰 Profit: <strong id='profitVal'></strong>";
+  animateValue("profitVal", 0, profit, 1200, "$");
 }
 
 // Auto Show Popup Ad after 10s
