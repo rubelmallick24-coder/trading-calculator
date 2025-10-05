@@ -1,72 +1,71 @@
-// ======= Tabs Function =======
+// Tab Switching
 function openTab(evt, tabName) {
-  const tabContents = document.querySelectorAll('.tab-content');
-  const tabButtons = document.querySelectorAll('.tab-button');
-
-  // Hide all tab contents
-  tabContents.forEach(tc => tc.classList.remove('active'));
-
-  // Remove 'active' class from all buttons
-  tabButtons.forEach(btn => btn.classList.remove('active'));
-
-  // Show the selected tab content
-  document.getElementById(tabName).classList.add('active');
-
-  // Add 'active' class to clicked button
-  evt.currentTarget.classList.add('active');
+  let i, tabContent, tabButtons;
+  tabContent = document.getElementsByClassName("tab-content");
+  for (i = 0; i < tabContent.length; i++) {
+    tabContent[i].classList.remove("active");
+  }
+  tabButtons = document.getElementsByClassName("tab-button");
+  for (i = 0; i < tabButtons.length; i++) {
+    tabButtons[i].classList.remove("active");
+  }
+  document.getElementById(tabName).classList.add("active");
+  evt.currentTarget.classList.add("active");
 }
 
-// ======= Lot Size Calculator =======
+// Lot Size Calculator
 function calcLot() {
-  const balance = parseFloat(document.getElementById('balance').value);
-  const riskPercent = parseFloat(document.getElementById('riskPercent').value);
-  const sl = parseFloat(document.getElementById('sl').value);
+  let balance = parseFloat(document.getElementById("balance").value);
+  let riskPercent = parseFloat(document.getElementById("riskPercent").value);
+  let sl = parseFloat(document.getElementById("sl").value);
 
-  if (isNaN(balance) || isNaN(riskPercent) || isNaN(sl) || sl <= 0) {
-    document.getElementById('lotResult').innerText = "Please enter valid numbers.";
+  if (!balance || !riskPercent || !sl) {
+    document.getElementById("lotResult").innerHTML = "⚠️ Enter all fields.";
     return;
   }
 
-  const lotSize = (balance * (riskPercent / 100)) / (sl * 10); // Standard formula
-  document.getElementById('lotResult').innerText = `Recommended Lot Size: ${lotSize.toFixed(2)} lots`;
+  let riskAmount = balance * (riskPercent / 100);
+  let lotSize = (riskAmount / sl) / 10;
+  document.getElementById("lotResult").innerHTML =
+    `✅ Lot Size: <strong>${lotSize.toFixed(2)}</strong>`;
 }
 
-// ======= Risk/Reward Calculator =======
+// Risk/Reward Calculator
 function calcRR() {
-  const entry = parseFloat(document.getElementById('entry').value);
-  const slPrice = parseFloat(document.getElementById('slPrice').value);
-  const tpPrice = parseFloat(document.getElementById('tpPrice').value);
+  let entry = parseFloat(document.getElementById("entry").value);
+  let slPrice = parseFloat(document.getElementById("slPrice").value);
+  let tpPrice = parseFloat(document.getElementById("tpPrice").value);
 
-  if (isNaN(entry) || isNaN(slPrice) || isNaN(tpPrice) || entry <= 0) {
-    document.getElementById('rrResult').innerText = "Please enter valid numbers.";
+  if (!entry || !slPrice || !tpPrice) {
+    document.getElementById("rrResult").innerHTML = "⚠️ Enter all fields.";
     return;
   }
 
-  const risk = Math.abs(entry - slPrice);
-  const reward = Math.abs(tpPrice - entry);
-  const rrRatio = reward / risk;
-
-  document.getElementById('rrResult').innerText = `Risk: ${risk.toFixed(2)}, Reward: ${reward.toFixed(2)}, R/R Ratio: ${rrRatio.toFixed(2)}`;
+  let risk = Math.abs(entry - slPrice);
+  let reward = Math.abs(tpPrice - entry);
+  let rr = reward / risk;
+  document.getElementById("rrResult").innerHTML =
+    `🎯 Risk/Reward: <strong>${rr.toFixed(2)}R</strong>`;
 }
 
-// ======= Profit Calculator =======
+// Profit Calculator
 function calcProfit() {
-  const pips = parseFloat(document.getElementById('pips').value);
-  const lots = parseFloat(document.getElementById('lots').value);
+  let pips = parseFloat(document.getElementById("pips").value);
+  let lots = parseFloat(document.getElementById("lots").value);
 
-  if (isNaN(pips) || isNaN(lots)) {
-    document.getElementById('profitResult').innerText = "Please enter valid numbers.";
+  if (!pips || !lots) {
+    document.getElementById("profitResult").innerHTML = "⚠️ Enter all fields.";
     return;
   }
 
-  const pipValue = 10; // Standard for 1 lot in USD
-  const profit = pips * lots * pipValue;
-
-  document.getElementById('profitResult').innerText = `Estimated Profit: $${profit.toFixed(2)}`;
+  let profit = pips * lots * 10;
+  document.getElementById("profitResult").innerHTML =
+    `💰 Profit: <strong>$${profit.toFixed(2)}</strong>`;
 }
 
-// ======= Optional: Auto-close popup after 10s =====
+// Auto Show Popup Ad after 10s
 window.onload = function() {
-  const popup = document.getElementById('popupAd');
-  setTimeout(() => { popup.style.display = 'none'; }, 10000);
+  setTimeout(() => {
+    document.getElementById("popupAd").style.display = "flex";
+  }, 10000);
 };
