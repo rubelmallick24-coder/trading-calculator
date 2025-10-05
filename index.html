@@ -2,16 +2,36 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device=device-width, initial-scale=1.0">
   <title>📊 Premium Trading Calculator</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+  <!-- Header -->
   <header>
-    <div class="logo">📊 Premium Trading Calculator</div>
+    <h1>📊 Trading Calculator</h1>
+    <p class="subtitle">Multi-Tool for Smart Traders</p>
   </header>
 
+  <!-- Top Banner Ad (Centered) -->
+  <div class="ad-banner">
+    <script type="text/javascript">
+      atOptions = {
+        'key' : 'e3d98ac4ffc4479eabecc85e660abbee',
+        'format' : 'iframe',
+        'height' : 50,
+        'width' : 320,
+        'params' : {}
+      };
+    </script>
+    <script type="text/javascript" src="//www.highperformanceformat.com/e3d98ac4ffc4479eabecc85e660abbee/invoke.js"></script>
+  </div>
+
+  <!-- Main Container -->
   <div class="container">
+
+    <!-- Tabs -->
     <div class="tabs">
       <button class="tab-button active" onclick="openTab(event, 'lot')">📏 Lot Size</button>
       <button class="tab-button" onclick="openTab(event, 'risk')">🎯 Risk/Reward</button>
@@ -21,13 +41,20 @@
       <button class="tab-button" onclick="openTab(event, 'news')">📣 News</button>
     </div>
 
+    <!-- Affiliate Promo -->
+    <div class="affiliate-box">
+      🚀 <a href="https://octa.click/idqzgnjAtbu" target="_blank">
+        Start Trading with OctaFX – Claim $50 Bonus
+      </a>
+    </div>
+
     <main>
       <!-- Lot Size Tool -->
       <div id="lot" class="tab-content active">
         <h3>📏 Lot Size Calculator</h3>
-        <input type="number" id="balance" class="calc-input" placeholder="Account Balance ($)" />
-        <input type="number" id="riskPercent" class="calc-input" placeholder="Risk (%)" />
-        <input type="number" id="sl" class="calc-input" placeholder="Stop Loss (pips)" />
+        <input type="number" id="balance" class="calc-input" placeholder="Account Balance ($)">
+        <input type="number" id="riskPercent" class="calc-input" placeholder="Risk (%)">
+        <input type="number" id="sl" class="calc-input" placeholder="Stop Loss (pips)">
         <button class="calculate" onclick="calcLot()">Calculate</button>
         <div id="lotResult" class="result"></div>
       </div>
@@ -35,9 +62,9 @@
       <!-- Risk/Reward Tool -->
       <div id="risk" class="tab-content">
         <h3>🎯 Risk/Reward Calculator</h3>
-        <input type="number" id="entry" class="calc-input" placeholder="Entry Price" />
-        <input type="number" id="slPrice" class="calc-input" placeholder="Stop Loss Price" />
-        <input type="number" id="tpPrice" class="calc-input" placeholder="Take Profit Price" />
+        <input type="number" id="entry" class="calc-input" placeholder="Entry Price">
+        <input type="number" id="slPrice" class="calc-input" placeholder="Stop Loss Price">
+        <input type="number" id="tpPrice" class="calc-input" placeholder="Take Profit Price">
         <button class="calculate" onclick="calcRR()">Calculate</button>
         <div id="rrResult" class="result"></div>
       </div>
@@ -45,8 +72,8 @@
       <!-- Profit/Pip Calculator -->
       <div id="profit" class="tab-content">
         <h3>💰 Profit Calculator</h3>
-        <input type="number" id="pips" class="calc-input" placeholder="Pips" />
-        <input type="number" id="lots" class="calc-input" placeholder="Lot Size" />
+        <input type="number" id="pips" class="calc-input" placeholder="Pips">
+        <input type="number" id="lots" class="calc-input" placeholder="Lot Size">
         <button class="calculate" onclick="calcProfit()">Calculate</button>
         <div id="profitResult" class="result"></div>
       </div>
@@ -64,21 +91,28 @@
       </div>
 
       <!-- News Section -->
-      <section id="news" class="tab-content">
+      <div id="news" class="tab-content">
         <h3>📣 Latest News</h3>
         <iframe src="https://www.tradingview.com/news/" style="width:100%; height:500px; border:none;"></iframe>
-      </section>
+      </div>
     </main>
   </div>
 
-  <footer>
-    <div class="affiliate-box">
-      🚀 <a href="https://octa.click/idqzgnjAtbu" target="_blank">Start Trading with OctaFX – Claim $50 Bonus</a>
+  <!-- Sticky Banner -->
+  <div class="sticky-banner">
+    🔥 <a href="https://your-affiliate-link.com" target="_blank">
+      Join VIP Trading Signals – Click Here
+    </a>
+  </div>
+
+  <!-- Popup Ad -->
+  <div id="popupAd" class="popup-ad">
+    <div class="popup-box">
+      <h3>Sponsored</h3>
+      <script type='text/javascript' src='//pl27714773.revenuecpmgate.com/2a/15/66/2a1566799b6eac03c821e4a59222486e.js'></script>
+      <button onclick="document.getElementById('popupAd').style.display='none'">Close</button>
     </div>
-    <div class="sticky-banner">
-      🔥 <a href="https://your-affiliate-link.com" target="_blank">Join VIP Trading Signals – Click Here</a>
-    </div>
-  </footer>
+  </div>
 
   <script src="script.js"></script>
 </body>
